@@ -1,6 +1,8 @@
-from apikey import apikey
+import os, openai
+from dotenv import load_dotenv
 
-import openai
+load_dotenv()
+apikey = os.getenv('apikey')
 
 # Set your API key
 openai.api_key = apikey
