@@ -1,93 +1,94 @@
 body {
+  margin: 0;
+  padding: 0;
+  background-color: #fff; 
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  margin: 0;
 }
+
 
 header {
   text-align: center;
-  background-color: #333;
-  color: white;
+  font-size: 2vw; 
   padding: 20px;
 }
+
 
 .grid-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, minmax(100px, 1fr));
-  gap: 10px;
-  width: 80%;
-  height: 80%;
-  background-color: black;
+  grid-template-rows: repeat(2, 1fr); 
+  gap: 10px; 
+  background-color: black; 
+  padding: 20px; 
+  justify-items: center; 
+  align-content: center; 
 }
+
 
 .grid-item {
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 2vw;
+  font-size: 2vw; 
   transition: background-color 0.3s, color 0.3s;
   cursor: pointer;
-  margin: 10px;
-  padding: 10px;
-  background-color: white;
+  padding: 15svh; 
+  background-color: rgb(0, 0, 0);
   color: black;
 }
 
 #item1 {
-  background-color: lightblue;
+  background-color: rgb(157, 208, 224);
   color: white;
 }
 
 #item2 {
-  background-color: lightgreen;
+  background-color: rgb(136, 221, 136);
   color: black;
 }
 
 #item3 {
-  background-color: lightcoral;
+  background-color: rgb(189, 86, 86);
   color: white;
 }
 
 #item4 {
-  background-color: lightseagreen;
+  background-color: rgb(169, 84, 172);
   color: white;
 }
 
 #item5 {
-  background-color: lightsalmon;
+  background-color: rgb(241, 224, 125);
   color: black;
 }
 
 #item6 {
-  background-color: lightpink;
+  background-color: rgb(255, 126, 158);
   color: black;
 }
 
+/* Hover styles for grid items */
 #item1:hover {
-  background-color: blue;
+  background-color: rgb(16, 16, 200);
 }
 
 #item2:hover {
-  background-color: green;
+  background-color: rgb(16, 159, 52);
 }
 
 #item3:hover {
-  background-color: red;
+  background-color: rgb(193, 3, 0);
 }
 
 #item4:hover {
-  background-color: darkgreen;
+  background-color: rgb(111, 3, 206);
 }
 
 #item5:hover {
-  background-color: salmon;
+  background-color: rgb(243, 147, 4);
 }
 
 #item6:hover {
-  background-color: pink;
+  background-color: rgb(153, 2, 65);
 }
