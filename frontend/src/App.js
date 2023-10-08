@@ -1,17 +1,38 @@
+import React from 'react';
+import './index.css'; 
+
 function App() {
   return (
     <div className="App">
-      <h1 className='menu'>Quizzo</h1>
-      <div className="quiz">
-         <p>What is your favorite childhood memory?</p>
-         <p>If you could travel anywhere in the world, where would you go and why?</p>
-         <p>What book are you currently reading, and what do you like about it?</p>
-         <p>What is a skill or hobby you've always wanted to learn but haven't had the chance to yet?</p>
-         <p>If you could have dinner with any historical figure, who would it be and what would you ask them?</p>
+      <header>
+        <h1>Page Header</h1>
+      </header>
 
+      <div className="grid-container">
+        {/* Row 1 */}
+        <div className="grid-item" id="item1">
+          Option 1
+        </div>
+        <div className="grid-item" id="item2">
+          Option 2
+        </div>
+        <div className="grid-item" id="item3">
+          Option 3
+        </div>
+
+        {/* Row 2 */}
+        <div className="grid-item" id="item4">
+          Option 4
+        </div>
+        <div className="grid-item" id="item5">
+          Option 5
+        </div>
+        <div className="grid-item" id="item6">
+          Option 6
+        </div>
       </div>
     </div>
   );
 }
-
 export default App;
+
