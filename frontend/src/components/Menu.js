@@ -1,5 +1,5 @@
 import React from "react"
-export default function Menu (props){
+export default function Menu ({setStart,setDest}){
     return(
         <>
                 <header>
@@ -9,7 +9,7 @@ export default function Menu (props){
         <div className="center-container"> 
             <div className="grid-container">
             {/* Row 1 */}
-            <div onClick={()=>props.setStart(!props.start)} className="grid-item" id="item1">
+            <div onClick={()=>{setDest("science");setStart(true)}} className="grid-item" id="item1">
                 Science
             </div>
             <div className="grid-item" id="item2">
