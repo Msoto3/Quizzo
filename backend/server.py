@@ -2,7 +2,6 @@ import os, openai, re
 from dotenv import load_dotenv
 from flask import Flask
 from flask_cors import CORS
-import string
 
 # setup
 load_dotenv()
@@ -54,10 +53,8 @@ def quiz():
         wrong_answers = [x.strip() for x in wrong_answers if x]
           
         qna[question]={"correct":right_answer,"incorrect":wrong_answers}
-    print(qna)
+
     return(qna)
-
-
 
 if __name__== "__main__":
     app.run(debug=True)

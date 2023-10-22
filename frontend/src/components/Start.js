@@ -1,5 +1,5 @@
 import React from "react"
-export default function Menu ({setStart,setDest}){
+export default function Start ({setStart,setDest}){
     return(
         <>
                 <header>

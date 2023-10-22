@@ -7,6 +7,7 @@ export default function Quiz({dest,data,setData}) {
       try {
         const response = await fetch(`http://localhost:5000/${dest}`);
         const data = await response.json();
+        console.log(data)
         setData(data);
       } catch (error) {
 

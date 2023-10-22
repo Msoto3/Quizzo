@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css';
-import Menu from './components/Menu';
-import Quiz from './components/Quiz';
+import Start from './components/Start';
+import Quiz from './components/Quiz'; 
 import { useState } from 'react';
 
 function App() {
@@ -10,8 +10,8 @@ function App() {
   const [data, setData] = useState(null);// the data that is stored from the http request
   return (
     <div className="App">
-      {!start && <Menu setStart={setStart} start={start}  setDest={setDest} />}
-      {start && <Quiz dest={dest} datas={data} setData={setData}/>}
+      {!start && <Start setStart={setStart} start={start}  setDest={setDest} />}
+      {start && <Quiz dest={dest} data={data} setData={setData}/>}
       
     </div>
   );
