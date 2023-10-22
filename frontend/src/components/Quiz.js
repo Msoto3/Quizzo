@@ -1,6 +1,12 @@
-import { useEffect } from "react";
-export default function Quiz({dest,data,setData}) {
-  
+import React, { useEffect, useState } from "react";
+
+export default function Quiz({ dest, data, setData }) {
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [shuffledAnswers, setShuffledAnswers] = useState([]);
+  const [selectedAnswer, setSelectedAnswer] = useState("");
+  const [showResult, setShowResult] = useState(false);
+  const [isCorrect, setIsCorrect] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 //   getting the data with the http request when the dest variable changes, ignore the terminal wanting more dependencies, it doesnt know what it wants
   useEffect(() => {
     const fetcher = async () => {
@@ -14,28 +20,76 @@ export default function Quiz({dest,data,setData}) {
         console.error("Error fetching data:", error);
       }
     };
-  
+
     if (!data && dest) {
       fetcher();
     }
-  }, [dest]);
+  }, [dest, data, setData]);
+
+  useEffect(() => {
+    if (data && Object.keys(data).length > 0) {
+      const currentData = data[Object.keys(data)[currentQuestion]];
+      const answers = [currentData.correct, ...currentData.incorrect];
+      const shuffled = answers.sort(() => Math.random() - 0.5);
+      setShuffledAnswers(shuffled);
+      setSelectedAnswer("");
+    }
+  }, [data, currentQuestion]);
+
+  const handleSelection = (answer) => {
+    setSelectedAnswer(answer);
+  };
+  // Function to handle moving to the next question
+  const handleNext = () => {
+    if (currentQuestion < Object.keys(data).length - 1) {
+      setCurrentQuestion((prev) => prev + 1);
+      setShowResult(false);
+      setSelectedAnswer("");
+      setSubmitted(false);
+    }
+  };
+
+  // Function to handle the submission of the answe
+  const handleSubmit = () => {
+    const currentData = data[Object.keys(data)[currentQuestion]];
+    const correctAnswer = currentData.correct;
+    if (selectedAnswer === correctAnswer) {
+      setIsCorrect(true);
+    } else {
+      setIsCorrect(false);
+    }
+    setShowResult(true);
+    setSubmitted(true);
+  };
 
   return (
     <div>
       {data ? (
-        // mapping the keys made from the data and getting the questions and answers
-        Object.keys(data).map((question, index) => (
-          <div key={index}>
-            <h2>{question}</h2>
-            <p>{data[question].correct}</p>
-            {data[question].incorrect.map((answer, i) => (
-              <p key={i}>{answer}</p>
-            ))}
-            <br />
-          </div>
-        ))
+        <div>
+          <h2>{Object.keys(data)[currentQuestion]}</h2>
+          {shuffledAnswers.map((answer, i) => (
+            <div key={i}>
+              <input
+                type="radio"
+                id={answer}
+                name="answer"
+                value={answer}
+                checked={selectedAnswer === answer}
+                onChange={() => handleSelection(answer)}
+              />
+              <label htmlFor={answer}>{answer}</label>
+            </div>
+          ))}
+          <br />
+          {showResult && <p>{isCorrect ? "Correct!" : "Incorrect!"}</p>}
+          {!showResult && !submitted && (
+            <button onClick={handleSubmit}>Submit</button>
+          )}
+          {submitted && currentQuestion < Object.keys(data).length - 1 && (
+            <button onClick={handleNext}>Next</button>
+          )}
+        </div>
       ) : (
-        // this loads while waiting for the http request to get the data
         <div>Loading...</div>
       )}
     </div>
