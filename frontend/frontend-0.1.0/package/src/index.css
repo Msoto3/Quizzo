@@ -1,0 +1,98 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+header {
+  text-align: center;
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  font-size: 10vw;
+}
+h2 {
+  text-align: center;
+  font-size: 8vw;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, minmax(100px, 1fr));
+  gap: 10px;
+  width: 80%;
+  height: 80%;
+  background-color: black;
+}
+
+.grid-item {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 2vw;
+  transition: background-color 0.3s, color 0.3s;
+  cursor: pointer;
+  margin: 10px;
+  padding: 10px;
+  background-color: white;
+  color: black;
+}
+
+#item1 {
+  background-color: lightblue;
+  color: white;
+}
+
+#item2 {
+  background-color: lightgreen;
+  color: black;
+}
+
+#item3 {
+  background-color: lightcoral;
+  color: white;
+}
+
+#item4 {
+  background-color: lightseagreen;
+  color: white;
+}
+
+#item5 {
+  background-color: lightsalmon;
+  color: black;
+}
+
+#item6 {
+  background-color: lightpink;
+  color: black;
+}
+
+#item1:hover {
+  background-color: blue;
+}
+
+#item2:hover {
+  background-color: green;
+}
+
+#item3:hover {
+  background-color: red;
+}
+
+#item4:hover {
+  background-color: darkgreen;
+}
+
+#item5:hover {
+  background-color: salmon;
+}
+
+#item6:hover {
+  background-color: pink;
+}

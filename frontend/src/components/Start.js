@@ -2,10 +2,12 @@ import React from "react"
 export default function Start ({setStart,setDest}){
     return(
         <>
+        <div id="leftBorder"> </div>
+        <div id="rightBorder"> </div>
                 <header>
             <h1>Quizzo</h1>
         </header>
-
+        <h2>Select a category to begin quiz</h2>
         <div className="center-container"> 
             <div className="grid-container">
             {/* Row 1 */}
