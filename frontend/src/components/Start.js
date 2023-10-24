@@ -14,8 +14,8 @@ export default function Start ({setStart,setDest}){
             <div onClick={()=>{setDest("science");setStart(true)}} className="grid-item" id="item1">
                 Science
             </div>
-            <div className="grid-item" id="item2">
-                Option 2
+            <div onClick={()=>{setDest("math");setStart(true)}} className="grid-item" id="item2">
+                Math
             </div>
             <div className="grid-item" id="item3">
                 Option 3
