@@ -63,6 +63,12 @@ export default function Quiz({ dest, data, setData }) {
   };
 
   return (
+    <>
+    <div id="leftBorder"> </div>
+        <div id="rightBorder"> </div>
+                <header>
+            <h1>Quizzo</h1>
+        </header>
     <div>
       {data ? (
         <div>
@@ -93,5 +99,6 @@ export default function Quiz({ dest, data, setData }) {
         <div>Loading...</div>
       )}
     </div>
+    </>
   );
 }
