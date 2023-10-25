@@ -64,11 +64,11 @@ export default function Quiz({ dest, data, setData }) {
 
   return (
     <>
-    <div id="leftBorder"> </div>
-        <div id="rightBorder"> </div>
-                <header>
-            <h1>Quizzo</h1>
-        </header>
+    {dest && <div id={`${dest}leftBorder`}> </div>}
+    {dest && <div id={`${dest}rightBorder`}> </div>}
+                { dest && <header id={`${dest}header`}>
+             <h1 >Quizzo</h1>
+        </header>}
     <div>
       {data ? (
         <div>

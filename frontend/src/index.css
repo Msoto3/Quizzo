@@ -164,3 +164,175 @@ h2 {
 #item6:hover {
   background-color: rgb(153, 2, 65);
 }
+#scienceheader {
+  position: relative;
+  text-align: center;
+  font-size: 2vw;
+  padding: 3px;
+  margin: 0;
+  background-color: rgb(16, 16, 200);
+  border: 4px solid black;
+  color: white;
+  z-index: 1;
+}
+#scienceleftBorder {
+  position: relative;
+  display: flex;
+  width: 10%;
+  height: 100vh;
+  float: left;
+  border: 2px solid black;
+  background: repeating-linear-gradient(
+    45deg, /* Angle of the stripes (adjust as needed) */
+    rgb(16, 16, 200), /* Blue stripe color */
+    rgb(16, 16, 200) 10px, /* Adjust the width of each blue stripe */
+    rgb(230, 230, 250) 10px, /* Yellow stripe color */
+    rgb(230, 230, 250) 20px /* Adju*/
+  );
+  z-index: 0;
+}
+#sciencerightBorder {
+  position: relative;
+  display: flex;
+  width: 10%;
+  height: 100vh;
+  float: right;
+  border: 2px solid black;
+  background: repeating-linear-gradient(
+    315deg, /* Angle of the stripes (adjust as needed) */
+    rgb(16, 16, 200), /* teal stripe color */
+    rgb(16, 16, 200) 10px, /* Adjust the width of each blue stripe */
+    rgb(230, 230, 250) 10px, /* lavender stripe color */
+    rgb(230, 230, 250) 20px /* Adju*/
+  );
+  z-index: 0;
+}
+#historyheader {
+  position: relative;
+  text-align: center;
+  font-size: 2vw;
+  padding: 3px;
+  margin: 0;
+  background-color: rgb(241, 224, 125);
+  border: 4px solid black;
+  color: white;
+  z-index: 1;
+}
+#historyleftBorder {
+  position: relative;
+  display: flex;
+  width: 10%;
+  height: 100vh;
+  float: left;
+  border: 2px solid black;
+  background: repeating-linear-gradient(
+    45deg, /* Angle of the stripes (adjust as needed) */
+    rgb(241, 224, 125), /* Blue stripe color */
+    rgb(241, 224, 125) 10px, /* Adjust the width of each blue stripe */
+    rgb(230, 230, 250) 10px, /* Yellow stripe color */
+    rgb(230, 230, 250) 20px /* Adju*/
+  );
+  z-index: 0;
+}
+#historyrightBorder {
+  position: relative;
+  display: flex;
+  width: 10%;
+  height: 100vh;
+  float: right;
+  border: 2px solid black;
+  background: repeating-linear-gradient(
+    315deg, /* Angle of the stripes (adjust as needed) */
+    rgb(241, 224, 125), /* teal stripe color */
+    rgb(241, 224, 125) 10px, /* Adjust the width of each blue stripe */
+    rgb(230, 230, 250) 10px, /* lavender stripe color */
+    rgb(230, 230, 250) 20px /* Adju*/
+  );
+  z-index: 0;
+}
+#mathheader {
+  position: relative;
+  text-align: center;
+  font-size: 2vw;
+  padding: 3px;
+  margin: 0;
+  background-color: rgb(16, 159, 52);
+  border: 4px solid black;
+  color: white;
+  z-index: 1;
+}
+#mathleftBorder {
+  position: relative;
+  display: flex;
+  width: 10%;
+  height: 100vh;
+  float: left;
+  border: 2px solid black;
+  background: repeating-linear-gradient(
+    45deg, /* Angle of the stripes (adjust as needed) */
+    rgb(16, 159, 52), /* Blue stripe color */
+    rgb(16, 159, 52) 10px, /* Adjust the width of each blue stripe */
+    rgb(230, 230, 250) 10px, /* Yellow stripe color */
+    rgb(230, 230, 250) 20px /* Adju*/
+  );
+  z-index: 0;
+}
+#mathrightBorder {
+  position: relative;
+  display: flex;
+  width: 10%;
+  height: 100vh;
+  float: right;
+  border: 2px solid black;
+  background: repeating-linear-gradient(
+    315deg, /* Angle of the stripes (adjust as needed) */
+    rgb(16, 159, 52), /* teal stripe color */
+    rgb(16, 159, 52) 10px, /* Adjust the width of each blue stripe */
+    rgb(230, 230, 250) 10px, /* lavender stripe color */
+    rgb(230, 230, 250) 20px /* Adju*/
+  );
+  z-index: 0;
+}
+#popcultureheader {
+  position: relative;
+  text-align: center;
+  font-size: 2vw;
+  padding: 3px;
+  margin: 0;
+  background-color: rgb(111, 3, 206);
+  border: 4px solid black;
+  color: white;
+  z-index: 1;
+}
+#popcultureleftBorder {
+  position: relative;
+  display: flex;
+  width: 10%;
+  height: 100vh;
+  float: left;
+  border: 2px solid black;
+  background: repeating-linear-gradient(
+    45deg, /* Angle of the stripes (adjust as needed) */
+    rgb(111, 3, 206), /* Blue stripe color */
+    rgb(111, 3, 206) 10px, /* Adjust the width of each blue stripe */
+    rgb(230, 230, 250) 10px, /* Yellow stripe color */
+    rgb(230, 230, 250) 20px /* Adju*/
+  );
+  z-index: 0;
+}
+#popculturerightBorder {
+  position: relative;
+  display: flex;
+  width: 10%;
+  height: 100vh;
+  float: right;
+  border: 2px solid black;
+  background: repeating-linear-gradient(
+    315deg, /* Angle of the stripes (adjust as needed) */
+    rgb(111, 3, 206), /* teal stripe color */
+    rgb(111, 3, 206) 10px, /* Adjust the width of each blue stripe */
+    rgb(230, 230, 250) 10px, /* lavender stripe color */
+    rgb(230, 230, 250) 20px /* Adju*/
+  );
+  z-index: 0;
+}

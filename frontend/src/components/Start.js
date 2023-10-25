@@ -22,7 +22,7 @@ export default function Start ({setStart,setDest}){
             </div>
 
             {/* Row 2 */}
-            <div onClick={()=>{setDest("pop culture");setStart(true)}} className="grid-item" id="item4">
+            <div onClick={()=>{setDest("popculture");setStart(true)}} className="grid-item" id="item4">
                 Pop Culture
             </div>
             <div onClick={()=>{setDest("history");setStart(true)}} className="grid-item" id="item5">
