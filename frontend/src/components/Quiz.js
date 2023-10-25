@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 
-export default function Quiz({ dest, data, setData }) {
+export default function Quiz({ dest }) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [shuffledAnswers, setShuffledAnswers] = useState([]);
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [showResult, setShowResult] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [data, setData] = useState(null);
 //   getting the data with the http request when the dest variable changes, ignore the terminal wanting more dependencies, it doesnt know what it wants
   useEffect(() => {
     const fetcher = async () => {
