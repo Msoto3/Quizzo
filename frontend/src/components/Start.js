@@ -17,16 +17,16 @@ export default function Start ({setStart,setDest}){
             <div onClick={()=>{setDest("math");setStart(true)}} className="grid-item" id="item2">
                 Math
             </div>
-            <div className="grid-item" id="item3">
+            <div  className="grid-item" id="item3">
                 Option 3
             </div>
 
             {/* Row 2 */}
-            <div className="grid-item" id="item4">
-                Option 4
+            <div onClick={()=>{setDest("pop culture");setStart(true)}} className="grid-item" id="item4">
+                Pop Culture
             </div>
-            <div className="grid-item" id="item5">
-                Option 5
+            <div onClick={()=>{setDest("history");setStart(true)}} className="grid-item" id="item5">
+                History
             </div>
             <div className="grid-item" id="item6">
                 Option 6
