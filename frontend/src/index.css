@@ -76,26 +76,11 @@ h2 {
   justify-content: center; 
   align-content: center;
   margin:auto;
-  width: 75%;
+  width: 70%;
   height: 65vh;
   z-index: 3;
   
 }
-
-@media (max-width: 768px) {
-  .grid-item {
-    grid-column: span 3;
-    grid-row: span 2;
-  }
-}
-
-@media (max-width: 480px) {
-  .grid-item {
-    grid-column: span 6;
-    grid-row: span 2;
-}
-}
-
 .grid-item {
   display: flex;
   flex-direction: column;
