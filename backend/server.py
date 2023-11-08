@@ -38,7 +38,7 @@ def quiz(genre):
         # gets the right answer
         res = openai.Completion.create(
             engine="text-davinci-003",  # Choose an appropriate engine (check the latest options in OpenAI's documentation)
-            prompt=f'{question}. Give only 1 answer',
+            prompt=f'{question}. Give only 1 answer, and do not describe the answer.',
             max_tokens=20,  # You can adjust the response length
         )
         right_answer = res.choices[0].text.replace('\n','').replace('?','')
@@ -46,8 +46,8 @@ def quiz(genre):
         #gets the wrong answers
         res = openai.Completion.create(
             engine="text-davinci-003",  # Choose an appropriate engine (check the latest options in OpenAI's documentation)
-            prompt=f'{question}. give 3 wrong answers only, also please seperate them by a comma, do not specify that they are wrong answer, and do not number them',
-            max_tokens=20,  # You can adjust the response length
+            prompt=f'{question}. give 3 wrong answers only, also please seperate them by a comma, do not specify that they are wrong answer, do not number them, do not make them longer than 30 tokens and they cannot be the same as {right_answer}.',
+            max_tokens=30,  # You can adjust the response length
         )
         wrong_answers = res.choices[0].text.replace('\n','').replace('?','').split(",")
         wrong_answers = [x.strip() for x in wrong_answers if x]

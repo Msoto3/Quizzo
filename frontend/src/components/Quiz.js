@@ -21,12 +21,13 @@ export default function Quiz({ dest }) {
         console.error("Error fetching data:", error);
       }
     };
-
+    
     if (!data && dest) {
       fetcher();
     }
+   
   }, [dest, data, setData]);
-
+//Create Shuffled Answers
   useEffect(() => {
     if (data && Object.keys(data).length > 0) {
       const currentData = data[Object.keys(data)[currentQuestion]];
