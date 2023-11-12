@@ -164,3 +164,15 @@ h2 {
 #item6:hover {
   background-color: rgb(153, 2, 65);
 }
+
+.quizButton{
+  background-color: rgb(0, 128, 128);
+  border-radius: 5px;
+  border: none;
+  padding: 10px;
+  
+
+}
+.results{
+  text-align: center;
+}

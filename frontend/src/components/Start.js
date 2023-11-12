@@ -17,8 +17,8 @@ export default function Start ({setStart,setDest}){
             <div onClick={()=>{setDest("math");setStart(true)}} className="grid-item" id="item2">
                 Math
             </div>
-            <div  className="grid-item" id="item3">
-                Option 3
+            <div onClick={()=>{setDest("coding");setStart(true)}}  className="grid-item" id="item3">
+                Coding
             </div>
 
             {/* Row 2 */}
@@ -28,8 +28,8 @@ export default function Start ({setStart,setDest}){
             <div onClick={()=>{setDest("history");setStart(true)}} className="grid-item" id="item5">
                 History
             </div>
-            <div className="grid-item" id="item6">
-                Option 6
+            <div onClick={()=>{setDest("geography");setStart(true)}} className="grid-item" id="item6">
+                Geography
             </div>
             </div>
         </div>

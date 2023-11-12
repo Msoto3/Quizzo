@@ -1,31 +1,13 @@
 import React, { useEffect, useState } from "react";
 
-export default function Quiz({ dest }) {
+export default function Quiz({ data, setStart, setData, setDest }) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [shuffledAnswers, setShuffledAnswers] = useState([]);
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [showResult, setShowResult] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [data, setData] = useState(null);
-//   getting the data with the http request when the dest variable changes, ignore the terminal wanting more dependencies, it doesnt know what it wants
-  useEffect(() => {
-    const fetcher = async () => {
-      try {
-        const response = await fetch(`http://localhost:5000/${dest}`);
-        const data = await response.json();
-        console.log(data)
-        setData(data);
-      } catch (error) {
-
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    if (!data && dest) {
-      fetcher();
-    }
-  }, [dest, data, setData]);
+  const [score,setScore] = useState(0)
 
   useEffect(() => {
     if (data && Object.keys(data).length > 0) {
@@ -50,18 +32,27 @@ export default function Quiz({ dest }) {
     }
   };
 
-  // Function to handle the submission of the answe
+  // Function to handle the submission of the answer
   const handleSubmit = () => {
     const currentData = data[Object.keys(data)[currentQuestion]];
     const correctAnswer = currentData.correct;
     if (selectedAnswer === correctAnswer) {
       setIsCorrect(true);
+      setScore((count)=>count+1)
     } else {
       setIsCorrect(false);
     }
     setShowResult(true);
     setSubmitted(true);
   };
+
+  // when the user is done with the quiz runs this function to reset all settings
+  const RestQuiz = () =>{
+      setData(null)
+      setDest("")
+      setStart(false)
+      
+  }
 
   return (
     <>
@@ -73,8 +64,8 @@ export default function Quiz({ dest }) {
     <div>
       {data ? (
         <div>
-          <h2>{Object.keys(data)[currentQuestion]}</h2>
-          {shuffledAnswers.map((answer, i) => (
+          <h2>{currentQuestion < Object.keys(data).length - 1 && Object.keys(data)[currentQuestion]}</h2>
+          {currentQuestion < Object.keys(data).length - 1 && shuffledAnswers.map((answer, i) => (
             <div key={i}>
               <input
                 type="radio"
@@ -88,16 +79,23 @@ export default function Quiz({ dest }) {
             </div>
           ))}
           <br />
-          {showResult && <p>{isCorrect ? "Correct!" : "Incorrect!"}</p>}
-          {!showResult && !submitted && (
-            <button onClick={handleSubmit}>Submit</button>
+          {currentQuestion < Object.keys(data).length - 1 && showResult && <p>{isCorrect ? "Correct!" : "Incorrect!"}</p>}
+          {currentQuestion < Object.keys(data).length - 1 && !showResult && !submitted && (
+            <button className="quizButton" onClick={handleSubmit}>Submit</button>
           )}
           {submitted && currentQuestion < Object.keys(data).length - 1 && (
-            <button onClick={handleNext}>Next</button>
+            <button className="quizButton"  onClick={handleNext}>Next</button>
+          )}
+          {currentQuestion >= Object.keys(data).length - 1 &&(
+            <div className="results">
+              <h1>Final Score: {(score/Object.keys(data).length)*100}%</h1>
+              <button className="quizButton" onClick={()=>RestQuiz()}>Main Menu</button>
+            </div>
+            
           )}
         </div>
       ) : (
-        <div>Loading...</div>
+        <div style={{textAlign:"center"}}>Generating Quiz...</div>
       )}
     </div>
     </>
