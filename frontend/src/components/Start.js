@@ -1,5 +1,16 @@
-import React from "react"
+import React, {useState} from "react"
+
 export default function Start ({setStart,setDest}){
+    const [userInput, setUserInput] = useState("");
+    const handleInputChange = (event) => {
+        // Update the ref with the current value of the input
+        setUserInput(event.target.value);
+    };
+    const userPrompt = () => {
+        setDest(userInput);
+        setStart(true);
+    }
+    
     return(
         <>
         <div id="leftBorder"> </div>
@@ -7,7 +18,19 @@ export default function Start ({setStart,setDest}){
                 <header>
             <h1>Quizzo</h1>
         </header>
-        <h2>Select a category to begin quiz</h2>
+        <h2><strong>Select a category to begin quiz</strong></h2>
+        <h2><strong>OR</strong></h2>
+        <div id="InputDiv">     
+            <input
+                type="text"
+                value={userInput}
+                id="UserInput"
+                placeholder="Input a category to begin Quiz"
+                onChange={handleInputChange}
+            />
+            <label htmlFor="UserInput" onClick={userPrompt} id="InputButton">Start</label>
+        </div>
+        
         <div className="center-container"> 
             <div className="grid-container">
             {/* Row 1 */}

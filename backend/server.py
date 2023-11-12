@@ -38,7 +38,7 @@ def quiz(genre):
         # gets the right answer
         res = openai.Completion.create(
             engine="text-davinci-003",  # Choose an appropriate engine (check the latest options in OpenAI's documentation)
-            prompt=f'{question}. Give only 1 answer, and do not describe the answer.',
+            prompt=f'{question}. Give only 1 answer, make it simple meaning make it short and do not make it longer than 20 tokens, and do not describe the answer.',
             max_tokens=20,  # You can adjust the response length
         )
         right_answer = res.choices[0].text.replace('\n','').replace('?','')

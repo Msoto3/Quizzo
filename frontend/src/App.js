@@ -8,6 +8,7 @@ function App() {
   const [start,setStart] = useState(false) // whether the website will be the front page or quiz page
   const [dest,setDest] = useState("") // this is the last part of the http that will be saved depending on the option clicked
   const [data, setData] = useState(null);
+  
   useEffect(()=>{
     const fetcher = async () => {
       try {
@@ -28,7 +29,7 @@ function App() {
   
   return (
     <div className="App">
-      {!start && <Start setDest={setDest} setStart={setStart} />}
+      {!start && <Start setDest={setDest} setStart={setStart}/>}
       {start && <Quiz data={data} setStart={setStart} setData={setData} setDest={setDest} />}
       
     </div>
