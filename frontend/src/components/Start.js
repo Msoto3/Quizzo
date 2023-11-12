@@ -17,19 +17,19 @@ export default function Start ({setStart,setDest}){
             <div onClick={()=>{setDest("math");setStart(true)}} className="grid-item" id="item2">
                 Math
             </div>
-            <div onClick={()=>{setDest("coding");setStart(true)}}  className="grid-item" id="item3">
-                Coding
+            <div onClick={()=>{setDest("sports");setStart(true)}} className="grid-item" id="item3">
+                Sports
             </div>
 
             {/* Row 2 */}
-            <div onClick={()=>{setDest("pop culture");setStart(true)}} className="grid-item" id="item4">
+            <div onClick={()=>{setDest("popculture");setStart(true)}} className="grid-item" id="item4">
                 Pop Culture
             </div>
             <div onClick={()=>{setDest("history");setStart(true)}} className="grid-item" id="item5">
                 History
             </div>
-            <div onClick={()=>{setDest("geography");setStart(true)}} className="grid-item" id="item6">
-                Geography
+            <div onClick={()=>{setDest("animals");setStart(true)}} className="grid-item" id="item6">
+                Animals
             </div>
             </div>
         </div>
