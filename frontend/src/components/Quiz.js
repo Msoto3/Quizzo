@@ -8,11 +8,13 @@ export default function Quiz({ data, setStart, setData, setDest }) {
   const [isCorrect, setIsCorrect] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [score,setScore] = useState(0)
+  const [showHint, setShowHint] = useState(false);
 
   useEffect(() => {
     if (data && Object.keys(data).length > 0) {
       const currentData = data[Object.keys(data)[currentQuestion]];
       const answers = [currentData.correct, ...currentData.incorrect];
+      const hint = currentData.hint
       const shuffled = answers.sort(() => Math.random() - 0.5);
       setShuffledAnswers(shuffled);
       setSelectedAnswer("");
@@ -29,6 +31,7 @@ export default function Quiz({ data, setStart, setData, setDest }) {
       setShowResult(false);
       setSelectedAnswer("");
       setSubmitted(false);
+      setShowHint(false); 
     }
   };
 
@@ -44,6 +47,7 @@ export default function Quiz({ data, setStart, setData, setDest }) {
     }
     setShowResult(true);
     setSubmitted(true);
+    setShowHint(false);
   };
 
   // when the user is done with the quiz runs this function to reset all settings
@@ -52,7 +56,11 @@ export default function Quiz({ data, setStart, setData, setDest }) {
       setDest("")
       setStart(false)
       
-  }
+  };
+
+  const handleHint = () => {
+    setShowHint(true);
+  };
 
   return (
     <>
@@ -63,7 +71,7 @@ export default function Quiz({ data, setStart, setData, setDest }) {
         </header>
     <div>
       {data ? (
-        <div>
+        <div style={{textAlign:"center"}}> 
           <h2>{currentQuestion < Object.keys(data).length - 1 && Object.keys(data)[currentQuestion]}</h2>
           {currentQuestion < Object.keys(data).length - 1 && shuffledAnswers.map((answer, i) => (
             <div key={i}>
@@ -86,6 +94,8 @@ export default function Quiz({ data, setStart, setData, setDest }) {
           {submitted && currentQuestion < Object.keys(data).length - 1 && (
             <button className="quizButton"  onClick={handleNext}>Next</button>
           )}
+          {!showHint && (<button className="quizButton" onClick={handleHint}>Hint</button>)}
+          {showHint && <p>{data[Object.keys(data)[currentQuestion]].hint}</p>}
           {currentQuestion >= Object.keys(data).length - 1 &&(
             <div className="results">
               <h1>Final Score: {(score/Object.keys(data).length)*100}%</h1>

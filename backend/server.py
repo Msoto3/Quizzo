@@ -51,8 +51,14 @@ def quiz(genre):
         )
         wrong_answers = res.choices[0].text.replace('\n','').replace('?','').split(",")
         wrong_answers = [x.strip() for x in wrong_answers if x]
-          
-        qna[question]={"correct":right_answer,"incorrect":wrong_answers}
+
+        res = openai.Completion.create(
+            engine="text-davinci-003",  # Choose an appropriate engine (check the latest options in OpenAI's documentation)
+            prompt=f'Generate a hint for {question}. Make it subtle and short to quide the quiz and keep it no onger than 30 tokens, and do not repeat this {right_answer}.',
+            max_tokens=30,  # You can adjust the response length
+        )
+        hint = res.choices[0].text.replace('\n','').replace('?','')
+        qna[question]={"correct":right_answer,"incorrect":wrong_answers,"hint" : hint}
 
     return(qna)
 
