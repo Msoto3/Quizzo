@@ -3,7 +3,6 @@ import React, {useState} from "react"
 export default function Start ({setStart,setDest}){
     const [userInput, setUserInput] = useState("");
     const handleInputChange = (event) => {
-        // Update the ref with the current value of the input
         setUserInput(event.target.value);
     };
     const userPrompt = () => {
@@ -18,19 +17,7 @@ export default function Start ({setStart,setDest}){
                 <header>
             <h1>Quizzo</h1>
         </header>
-        <h2><strong>Select a category to begin quiz</strong></h2>
-        <h2><strong>OR</strong></h2>
-        <div id="InputDiv">     
-            <input
-                type="text"
-                value={userInput}
-                id="UserInput"
-                placeholder="Input a category to begin Quiz"
-                onChange={handleInputChange}
-            />
-            <label htmlFor="UserInput" onClick={userPrompt} id="InputButton">Start</label>
-        </div>
-        
+        <br/>
         <div className="center-container"> 
             <div className="grid-container">
             {/* Row 1 */}
@@ -53,6 +40,21 @@ export default function Start ({setStart,setDest}){
             </div>
             <div onClick={()=>{setDest("animals");setStart(true)}} className="grid-item" id="item6">
                 Animals
+            </div>
+
+            <div className="grid-item" id="item7">
+                Custom Prompt
+                <input
+                type="text"
+                value={userInput}
+                placeholder="Type Genre Here"
+                style={{ marginRight: '10px' }}
+                onChange={handleInputChange}
+                />
+                </div>
+            <div onClick={userPrompt} className="grid-item" id="item8">
+            </div>
+            <div className="grid-item" id="item7">
             </div>
             </div>
         </div>
