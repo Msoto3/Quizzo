@@ -120,6 +120,9 @@ h2 {
   z-index: 3;
   border: 3px solid white;
 }
+.grid-item:nth-child(1) {
+  grid-column: span 2; /* This makes the third grid item span three columns */
+}
 #item1 {
   background-color: rgb(157, 208, 224);
   color: white;
