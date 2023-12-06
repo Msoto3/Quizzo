@@ -205,3 +205,24 @@ h2 {
 .results{
   text-align: center;
 }
+
+.number-of-questions{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Adjust as needed to center vertically */
+}
+
+.number-of-questions input {
+  margin-bottom: 10px;
+  padding: 8px;
+}
+
+.number-of-questions button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}

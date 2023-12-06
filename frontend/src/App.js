@@ -1,41 +1,56 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './index.css';
 import Start from './components/Start';
-import Quiz from './components/Quiz'; 
-import { useState } from 'react';
+import Quiz from './components/Quiz';
+import NumberofQuestions from './components/NumberofQuestions';
 
 function App() {
-  const [start,setStart] = useState(false) // whether the website will be the front page or quiz page
-  const [dest,setDest] = useState("") // this is the last part of the http that will be saved depending on the option clicked
+  const [start, setStart] = useState(false);
+  const [dest, setDest] = useState('');
   const [data, setData] = useState(null);
-  
-  useEffect(()=>{
+  const [questionCount, setQuestionCount] = useState(0);
+  const [showNumberofQuestions, setShowNumberofQuestions] = useState(false);
+
+  useEffect(() => {
     const fetcher = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/${dest}`);
-        const data = await response.json();
-        console.log(data)
-        setData(data);
+        let url = `http://localhost:5000/${dest}`;
+        if (questionCount > 0) {
+          url = `http://localhost:5000/${dest}/${questionCount}`;
+          const response = await fetch(url);
+          const data = await response.json();
+          setData(data);
+        }
       } catch (error) {
-  
-        console.error("Error fetching data:", error);
+        console.error('Error fetching data:', error);
       }
     };
 
-    if(dest)
-      fetcher()
+    if (dest) {
+      fetcher();
+    }
+  }, [dest, questionCount]);
 
-  },[start,setData,dest])
-  
+  const handleStartQuiz = () => {
+    setShowNumberofQuestions(true);
+  };
+
+  const goToQuiz = () => {
+    setShowNumberofQuestions(false);
+    setStart(true);
+  };
+
   return (
     <div className="App">
-      {!start && <Start setDest={setDest} setStart={setStart}/>}
+      {!start && !showNumberofQuestions && (
+        <Start setDest={setDest} setStart={handleStartQuiz} />
+      )}
+      {!start && showNumberofQuestions && (
+        <NumberofQuestions setQuestionCount={setQuestionCount} goToQuiz={goToQuiz} />
+      )}
       {start && <Quiz data={data} setStart={setStart} setData={setData} setDest={setDest} />}
-      
     </div>
   );
 }
 
 export default App;
-
-

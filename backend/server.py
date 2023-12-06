@@ -12,11 +12,11 @@ CORS(app)
 
 MAX_VALIDATION_TRIES = 3  # Maximum attempts to validate the right answer
 
-@app.route("/<genre>")
-def quiz(genre):
+@app.route("/<genre>/<numberofquestions>")
+def quiz(genre, numberofquestions = 4):
     openai.api_key = apikey
-  
-    prompt = f"give me 4 simple questions about {genre}, it has to be 4 questions"
+    
+    prompt = f"give me {numberofquestions} simple questions about {genre}, it has to be {numberofquestions}  questions"
     response = openai.Completion.create(
         model="text-davinci-003",
         prompt=prompt,
