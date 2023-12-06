@@ -68,31 +68,34 @@ export default function Quiz({ data, setStart, setData, setDest }) {
       <div>
         {data ? (
           <div style={{ textAlign: "center" }}>
-            <h2>{currentQuestion < Object.keys(data).length && Object.keys(data)[currentQuestion]}</h2>
+            <h2 className="h2 text-info font-weight-bold">{currentQuestion < Object.keys(data).length && Object.keys(data)[currentQuestion]}</h2>
             {currentQuestion < Object.keys(data).length &&
               shuffledAnswers.map((answer, i) => (
-                <div key={i}>
-                  <input
-                    type="radio"
-                    id={answer}
-                    name="answer"
-                    value={answer}
-                    checked={selectedAnswer === answer}
-                    onChange={() => handleSelection(answer)}
-                  />
-                  <label htmlFor={answer}>{answer}</label>
+                <div className="container d-block shadow p-2 mb-3 bg-white rounded" style={{ width: '60%'}}>
+                  <div key={i} className="form-check d-flex align-content-center mb-1 p-3 border rounded hover-effect">
+                    <input 
+                      type="radio"
+                      id={answer}
+                      className="form-check-input"              
+                      name="answer"
+                      value={answer}
+                      checked={selectedAnswer === answer}
+                      onChange={() => handleSelection(answer)}
+                    />
+                    <label id="rLabel" className="form-check-label" htmlFor={answer}>{answer}</label>
+                  </div>
                 </div>
               ))}
             <br />
             {currentQuestion < Object.keys(data).length && showResult && <p>{isCorrect ? "Correct!" : "Incorrect!"}</p>}
             {currentQuestion < Object.keys(data).length && !showResult && !submitted && (
-              <button className="quizButton" onClick={handleSubmit}>Submit</button>
+              <button className="btn btn-primary m-1" onClick={handleSubmit}>Submit</button>
             )}
             {submitted && currentQuestion < Object.keys(data).length && (
               <button className="quizButton" onClick={handleNext}>Next</button>
             )}
             {currentQuestion < Object.keys(data).length && !showHint && (
-              <button className="quizButton" onClick={handleHint}>Hint</button>
+              <button className="btn btn-secondary m-1" onClick={handleHint}>Hint</button>
             )}
             {currentQuestion < Object.keys(data).length && showHint && <p>{data[Object.keys(data)[currentQuestion]].hint}</p>}
             {currentQuestion >= Object.keys(data).length && (
