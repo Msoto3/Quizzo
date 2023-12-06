@@ -35,6 +35,7 @@ def quiz(genre, numberofquestions = 4):
         right_answer = ''
         wrong_answers = []
         hint = ''
+        wrong_answers_string = ""
 
         # Fetch right answer and validate
         validation_tries = 0
@@ -59,14 +60,25 @@ def quiz(genre, numberofquestions = 4):
         if validation_tries == MAX_VALIDATION_TRIES:
             pass
 
-        # Fetch wrong answers
+         # Fetch wrong answers
         while len(wrong_answers) < 3:
-            res = openai.Completion.create(
+            if (wrong_answers_string==""): 
+                res = openai.Completion.create(
                 model="text-davinci-003",
                 prompt=f'{question}. give me 1 wrong answer (not longer than 30 tokens) and cannot be the same as {right_answer}.',
                 max_tokens=30,
-            )
+                )
+            else:
+                res = openai.Completion.create(
+                model="text-davinci-003",
+                prompt=f'{question}. give me 1 wrong answer (not longer than 30 tokens) and cannot be the same as {right_answer} and cannot be the same {wrong_answers_string}.',
+                max_tokens=30,
+                )
             wrong_answer = res.choices[0].text.replace('\n', '').replace('?', '').strip()
+            if (wrong_answers_string==""):
+                wrong_answers_string = wrong_answer
+            else:
+                wrong_answers_string = wrong_answers_string +" OR " + wrong_answer
 
             if wrong_answer != right_answer and wrong_answer not in wrong_answers:
                 wrong_answers.append(wrong_answer)
