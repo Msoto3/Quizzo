@@ -13,10 +13,10 @@ CORS(app)
 MAX_VALIDATION_TRIES = 3  # Maximum attempts to validate the right answer
 
 @app.route("/<genre>/<numberofquestions>")
-def quiz(genre, numberofquestions = 4):
+def quiz(genre, numberofquestions):
     openai.api_key = apikey
     
-    prompt = f"give me {numberofquestions} simple questions about {genre}, it has to be {numberofquestions}  questions"
+    prompt = f"give me {numberofquestions} simple questions about \"{genre}\""
     response = openai.Completion.create(
         model="text-davinci-003",
         prompt=prompt,
@@ -35,7 +35,7 @@ def quiz(genre, numberofquestions = 4):
         right_answer = ''
         wrong_answers = []
         hint = ''
-        wrong_answers_string = ""
+        wrong_answers_container = []
 
         # Fetch right answer and validate
         validation_tries = 0
@@ -57,12 +57,11 @@ def quiz(genre, numberofquestions = 4):
                 break  # Break the loop if the answer is validated as correct
             validation_tries += 1
 
-        if validation_tries == MAX_VALIDATION_TRIES:
-            pass
+        
 
          # Fetch wrong answers
         while len(wrong_answers) < 3:
-            if (wrong_answers_string==""): 
+            if not wrong_answers_container: 
                 res = openai.Completion.create(
                 model="text-davinci-003",
                 prompt=f'{question}. give me 1 wrong answer (not longer than 30 tokens) and cannot be the same as {right_answer}.',
@@ -71,16 +70,13 @@ def quiz(genre, numberofquestions = 4):
             else:
                 res = openai.Completion.create(
                 model="text-davinci-003",
-                prompt=f'{question}. give me 1 wrong answer (not longer than 30 tokens) and cannot be the same as {right_answer} and cannot be the same {wrong_answers_string}.',
+                prompt=f'{question}. give me 1 wrong answer (not longer than 30 tokens) and cannot be the same as {right_answer} and cannot be the same as the following in the list \"{wrong_answers_container}\".',
                 max_tokens=30,
                 )
             wrong_answer = res.choices[0].text.replace('\n', '').replace('?', '').strip()
-            if (wrong_answers_string==""):
-                wrong_answers_string = wrong_answer
-            else:
-                wrong_answers_string = wrong_answers_string +" OR " + wrong_answer
+            wrong_answers_container.append(wrong_answer)
 
-            if wrong_answer != right_answer and wrong_answer not in wrong_answers:
+            if wrong_answer != right_answer and wrong_answer not in wrong_answers and wrong_answer:
                 wrong_answers.append(wrong_answer)
 
         # Fetch hint

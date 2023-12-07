@@ -32,6 +32,11 @@ export default function Quiz({ data, setStart, setData, setDest }) {
       setSubmitted(false);
       setShowHint(false);
     }
+
+    //makes sure to reset the correct answer div for the next question
+    const div = document.getElementById('correctAnswer')
+    const parent = div.parentNode
+    parent.removeChild(div)
   };
 
   const handleSubmit = () => {
@@ -46,7 +51,20 @@ export default function Quiz({ data, setStart, setData, setDest }) {
     setShowResult(true);
     setSubmitted(true);
     setShowHint(false);
+
+    handleCorrectAnswer(currentData.correct)
+
   };
+
+  // creates a div to specifiy what the correct answer is
+  const handleCorrectAnswer = (correct) =>{
+      const div = document.createElement("div")
+      div.innerHTML = `Correct Answer: ${correct}`
+      div.id = "correctAnswer"
+      div.style.color = "red"
+      document.body.appendChild(div)
+
+  }
 
   const ResetQuiz = () => {
     setData(null);
@@ -72,7 +90,7 @@ export default function Quiz({ data, setStart, setData, setDest }) {
             {currentQuestion < Object.keys(data).length &&
               shuffledAnswers.map((answer, i) => (
                 <div className="container d-block shadow p-2 mb-3 bg-white rounded" style={{ width: '60%'}}>
-                  <div key={i} className="form-check d-flex align-content-center mb-1 p-3 border rounded hover-effect">
+                  <div key={i} className="form-check d-flex align-content-center mb-1 p-3 border rounded hover-effect ">
                     <input 
                       type="radio"
                       id={answer}
@@ -82,7 +100,7 @@ export default function Quiz({ data, setStart, setData, setDest }) {
                       checked={selectedAnswer === answer}
                       onChange={() => handleSelection(answer)}
                     />
-                    <label id="rLabel" className="form-check-label" htmlFor={answer}>{answer}</label>
+                    <label id="rLabel" className={`form-check-label${answer===data[Object.keys(data)[currentQuestion]].correct?"-correct":""}`} htmlFor={answer}>{answer}</label>
                   </div>
                 </div>
               ))}
