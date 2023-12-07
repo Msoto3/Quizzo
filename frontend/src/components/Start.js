@@ -6,8 +6,14 @@ export default function Start ({setStart,setDest}){
         setUserInput(event.target.value);
     };
     const userPrompt = () => {
-        setDest(userInput);
-        setStart(true);
+        if(!userInput){
+            alert("please type a genre")
+        }
+        else{
+            setDest(userInput);
+            setStart(true);
+        }
+        
     }
     
     return(
