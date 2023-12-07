@@ -14,10 +14,9 @@ function App() {
   useEffect(() => {
     const fetcher = async () => {
       try {
-        
-        let url = `http://Msoto3.github.io/Quizzo/${dest}`;
+        let url = `http://localhost:5000/${dest}`;
         if (questionCount > 0) {
-          url = `http://Msoto3.github.io/Quizzo/${dest}/${questionCount}`;
+          url = `http://localhost:5000/${dest}/${questionCount}`;
           const response = await fetch(url);
           const data = await response.json();
           setData(data);

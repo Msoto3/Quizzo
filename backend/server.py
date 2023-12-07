@@ -15,7 +15,6 @@ MAX_VALIDATION_TRIES = 3  # Maximum attempts to validate the right answer
 @app.route("/<genre>/<numberofquestions>")
 def quiz(genre, numberofquestions):
     openai.api_key = apikey
-    
     prompt = f"give me {numberofquestions} simple questions about \"{genre}\""
     response = openai.Completion.create(
         model="text-davinci-003",
