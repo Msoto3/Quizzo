@@ -14,9 +14,9 @@ function App() {
   useEffect(() => {
     const fetcher = async () => {
       try {
-        let url = `https://quizzo-bisg.onrender.com/${dest}`;
+        let url = `http://localhost:5000/${dest}`;
         if (questionCount > 0) {
-          url = `https://quizzo-bisg.onrender.com/${dest}/${questionCount}`;
+          url = `http://localhost:5000/${dest}/${questionCount}`;
           const response = await fetch(url);
           const data = await response.json();
           setData(data);
