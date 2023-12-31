@@ -1,5 +1,5 @@
 import os
-import openai
+from openai import OpenAI
 import re
 from dotenv import load_dotenv
 from flask import Flask
@@ -9,6 +9,7 @@ load_dotenv()
 apikey = os.getenv('API_KEY')
 app = Flask(__name__)
 CORS(app)
+openai = OpenAI(api_key=apikey)
 
 MAX_VALIDATION_TRIES = 3  # Maximum attempts to validate the right answer
 
@@ -17,7 +18,7 @@ def quiz(genre, numberofquestions):
     openai.api_key = apikey
     
     prompt = f"give me {numberofquestions} simple questions about \"{genre}\""
-    response = openai.Completion.create(
+    response = openai.completions.create(
         model="text-davinci-003",
         prompt=prompt,
         max_tokens=80,
@@ -40,7 +41,7 @@ def quiz(genre, numberofquestions):
         # Fetch right answer and validate
         validation_tries = 0
         while validation_tries < MAX_VALIDATION_TRIES:
-            res = openai.Completion.create(
+            res = openai.completions.create(
                 model="text-davinci-003",
                 prompt=f'{question}. Give only 1 answer, make it simple and short (not longer than 20 tokens), and do not describe the answer.',
                 max_tokens=20,
@@ -48,7 +49,7 @@ def quiz(genre, numberofquestions):
             right_answer = res.choices[0].text.replace('\n', '').replace('?', '')
 
             # Validate the right answer
-            validate_res = openai.Completion.create(
+            validate_res = openai.completions.create(
                 model="text-davinci-003",
                 prompt=f"Is '{right_answer}' a correct answer for '{question}'?",
                 max_tokens=10,
@@ -62,13 +63,13 @@ def quiz(genre, numberofquestions):
          # Fetch wrong answers
         while len(wrong_answers) < 3:
             if not wrong_answers_container: 
-                res = openai.Completion.create(
+                res = openai.completions.create(
                 model="text-davinci-003",
                 prompt=f'{question}. give me 1 wrong answer (not longer than 30 tokens) and cannot be the same as {right_answer}.',
                 max_tokens=30,
                 )
             else:
-                res = openai.Completion.create(
+                res = openai.completions.create(
                 model="text-davinci-003",
                 prompt=f'{question}. give me 1 wrong answer (not longer than 30 tokens) and cannot be the same as {right_answer} and cannot be the same as the following in the list \"{wrong_answers_container}\".',
                 max_tokens=30,
@@ -80,7 +81,7 @@ def quiz(genre, numberofquestions):
                 wrong_answers.append(wrong_answer)
 
         # Fetch hint
-        res = openai.Completion.create(
+        res = openai.completions.create(
             model="text-davinci-003",
             prompt=f'Generate a hint for {question}. Make it subtle and short to guide the quiz (not longer than 30 tokens), and it cannot be the same as this right answer: {right_answer}.',
             max_tokens=30,
